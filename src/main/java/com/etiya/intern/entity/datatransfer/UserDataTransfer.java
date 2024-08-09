@@ -13,7 +13,6 @@ public class UserDataTransfer {
 
     public UserDataTransfer(String name) {
         this.name = name;
-
     }
 
     public UserDataTransfer() {

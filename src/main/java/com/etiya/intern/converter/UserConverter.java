@@ -3,20 +3,12 @@ package com.etiya.intern.converter;
 import com.etiya.intern.entity.UserEntity;
 import com.etiya.intern.entity.datatransfer.UserDataTransfer;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 @Component
 public class UserConverter {
 
-    public List<UserDataTransfer> userEntityListConvertToUserDtoList(List<UserEntity> userEntityList){
-        List<UserDataTransfer> userDataTransferList =new ArrayList<>();
-        for (UserEntity userEntity : userEntityList){
-            UserDataTransfer userDataTransfer = new UserDataTransfer(userEntity.getName());
-            userDataTransferList.add(userDataTransfer);
-        }
-        return userDataTransferList;
+    public Flux<UserDataTransfer> userEntityListConvertToUserDataTransferList(Flux<UserEntity> userEntityList){
+        return userEntityList.map(userEntity -> new UserDataTransfer(userEntity.getName()));
     }
-
 }
